@@ -1,15 +1,15 @@
-### AdvetureWorksDB-SQL-queries-on-10-Business-Questions.
+## AdvetureWorksDB-SQL-queries-on-10-Business-Questions.
 
-```markdown
-### AdventureWorks Database Analysis
 
-### Introduction
+## AdventureWorks Database Analysis
+
+## Introduction
 In this analysis, I will be exploring various aspects of the AdventureWorks database using SQL queries. The AdventureWorks database contains information related to sales, customers, products, and more, making it an excellent source for data analysis. We will answer ten advanced SQL questions, each designed to provide valuable insights into the data.
 
-### Prerequisites
+## Prerequisites
 Before running the SQL queries, ensure you have access to the AdventureWorks database and an SQL client.
 
-### Questions and Answers
+## Questions and Answers
 
 ### 1. Find the Top 5 Customers with the Highest Total Sales Amount
 
