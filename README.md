@@ -1,4 +1,4 @@
-# AdvetureWorksDB-SQL-queries-on-10-Business-Questions
+# AdvetureWorksDB-SQL-queries-on-10-Business-Questions.
 
 ```markdown
 # AdventureWorks Database Analysis
