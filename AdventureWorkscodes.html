@@ -7458,7 +7458,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=6b9bdc94-9166-4e41-b9c4-4537af0b484c">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=d32f2436-4c41-41d3-bc13-c5bf798695e6">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7475,35 +7475,41 @@ a.anchor-link {
 <span class="n">load_dotenv</span><span class="p">()</span>
 
 <span class="c1"># Get the connection details from environment variables</span>
-<span class="n">host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"host"</span><span class="p">)</span>
-<span class="n">user</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"user"</span><span class="p">)</span>
-<span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"password"</span><span class="p">)</span>
-<span class="n">database</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"database"</span><span class="p">)</span>
+<span class="n">host</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_HOST"</span><span class="p">)</span>
+<span class="n">user</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_USER"</span><span class="p">)</span>
+<span class="n">password</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_PASSWORD"</span><span class="p">)</span>
+<span class="n">database</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">"DB_DATABASE"</span><span class="p">)</span>
 
 <span class="c1"># Create the connection string</span>
-<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"DRIVER=</span><span class="se">{{</span><span class="s2">ODBC Driver 18 for SQL Server</span><span class="se">}}</span><span class="s2">;SERVER=</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s2">;DATABASE=</span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">;UID=</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">;PWD=</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">;"</span>
+<span class="n">connection_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"DRIVER=</span><span class="se">{{</span><span class="s2">ODBC Driver 18 for SQL Server</span><span class="se">}}</span><span class="s2">;SERVER=</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s2">;DATABASE=</span><span class="si">{</span><span class="n">database</span><span class="si">}</span><span class="s2">;UID=</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s2">;PWD=</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s2">;Encrypt=yes;"</span>
 
 <span class="c1"># Create a connection to Microsoft SQL Server</span>
 <span class="n">connection</span> <span class="o">=</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">connection_string</span><span class="p">)</span>
 
-<span class="c1"># Now you can use the 'connection' object to interact with the SQL Server database</span>
-<span class="c1"># For example, you can create a cursor and execute the query:</span>
+<span class="c1"># Create a cursor for executing queries</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">connection</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 
-<span class="c1"># Execute the query to get all rows from FactInternetSales table</span>
-<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM FactInternetSales;"</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Execute the query to get all rows from FactInternetSales table</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">"SELECT * FROM FactInternetSales;"</span><span class="p">)</span>
 
-<span class="c1"># Fetch the result of the query</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="c1"># Fetch the result of the query</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
 
-<span class="c1"># Convert the result to a list of tuples</span>
-<span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
+    <span class="c1"># Convert the result to a list of tuples</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="nb">tuple</span><span class="p">(</span><span class="n">row</span><span class="p">)</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">]</span>
 
-<span class="c1"># Define column names for the query result (optional)</span>
-<span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">column</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
+    <span class="c1"># Define column names for the query result (optional)</span>
+    <span class="n">column_names</span> <span class="o">=</span> <span class="p">[</span><span class="n">column</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">description</span><span class="p">]</span>
 
-<span class="c1"># Create a pandas DataFrame for the query result</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+    <span class="c1"># Create a pandas DataFrame for the query result</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names</span><span class="p">)</span>
+
+    <span class="c1"># Display the DataFrame</span>
+    <span class="c1">#print(df)</span>
+
+<span class="k">except</span> <span class="n">pyodbc</span><span class="o">.</span><span class="n">Error</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Error while executing the query:"</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7521,7 +7527,7 @@ a.anchor-link {
 </div>
 </div>
 </div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=3179a5fa-9bf9-460b-ab6c-29bab4493453">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=7204e29d-6234-41b2-a772-348ec1c332eb">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
@@ -7556,7 +7562,7 @@ a.anchor-link {
 <span class="n">df_top_customers</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data_top_customers</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">column_names_top_customers</span><span class="p">)</span>
 
 <span class="c1"># Display the DataFrame</span>
-<span class="n">df_top_customers</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_top_customers</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7566,60 +7572,16 @@ a.anchor-link {
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[2]:</div>
-<div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/html" tabindex="0">
-<div>
-<style scoped="">
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-</style>
-<table border="1" class="dataframe">
-<thead>
-<tr style="text-align: right;">
-<th></th>
-<th>CustomerKey</th>
-<th>Total</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<th>0</th>
-<td>12301</td>
-<td>13295.3800</td>
-</tr>
-<tr>
-<th>1</th>
-<td>12132</td>
-<td>13294.2700</td>
-</tr>
-<tr>
-<th>2</th>
-<td>12308</td>
-<td>13269.2700</td>
-</tr>
-<tr>
-<th>3</th>
-<td>12131</td>
-<td>13265.9900</td>
-</tr>
-<tr>
-<th>4</th>
-<td>12300</td>
-<td>13242.7000</td>
-</tr>
-</tbody>
-</table>
-</div>
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>   CustomerKey       Total
+0        12301  13295.3800
+1        12132  13294.2700
+2        12308  13269.2700
+3        12131  13265.9900
+4        12300  13242.7000
+</pre>
 </div>
 </div>
 </div>
