@@ -1,7 +1,7 @@
 ## AdvetureWorksDB-SQL-queries-on-10-Business-Questions.
 
 
-## AdventureWorks Database Analysis
+## AdventureWorks Database Analysis with Python
 
 ## Introduction
 In this analysis, I will be exploring various aspects of the AdventureWorks database using SQL queries. The AdventureWorks database contains information related to sales, customers, products, and more, making it an excellent source for data analysis. We will answer ten advanced SQL questions, each designed to provide valuable insights into the data.
